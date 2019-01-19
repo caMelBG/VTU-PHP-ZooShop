@@ -38,7 +38,7 @@ class AnimalTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required'
+            'name'=>'required|max:128'
         ]);
 
         $animalType = new AnimalType;
@@ -70,7 +70,7 @@ class AnimalTypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required'
+            'name'=>'required|max:128'
         ]);
 
         $animalType = AnimalType::find($id);

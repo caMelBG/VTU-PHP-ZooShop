@@ -25,6 +25,11 @@ Route::get('/animalBreed', 'AnimalBreedController@index');
 Route::post('/animalBreed/store', 'AnimalBreedController@store');
 Route::post('/animalBreed/update', 'AnimalBreedController@store');
 
+Route::resource('animal', 'AnimalController');
+Route::get('/animal', 'AnimalController@index');
+Route::post('/animal/store', 'AnimalController@store');
+Route::post('/animal/update', 'AnimalController@store');
+
 //
 Auth::routes();
 

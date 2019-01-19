@@ -2,84 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Animal;
 use App\AnimalType;
+use App\AnimalBreed;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $animals = Animal::all();
+
+        return view('animal.index', $animals) ->with('animalBreeds', $animals);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $animal = new Animal;
+        $types = AnimalType::all();
+        $breeds = AnimalBreed::all();
+
+        $data = [
+            'animal'  => $animal,
+            'types'   => $types,
+            'breeds' => $breeds
+        ];
+
+        return view('animal.create', $data) ->with('data', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|max:128',
+            'animal_type_id'=>'required|integer',
+            'animal_breed_id'=>'required|integer',
+            'birth_date'=>'required|date|date_format:Y-m-d',
+        ]);
+
+        $animal = new Animal;
+        $animal->name = $request->get('name');
+        $animal->animal_type_id = $request->get('animal_type_id');
+        $animal->animal_breed_id = $request->get('animal_breed_id');
+        $animal->birth_date = date($request->get('birth_date'));
+        $animal->updated_at = new DateTime;
+        $animal->save();
+
+        return redirect('animal')->with('success', 'Animal has been updated successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Animal $animal)
+    public function edit($id)
     {
-        //
+        $animal = Animal::find($id);
+        $types = AnimalType::all();
+        $breeds = AnimalBreed::all();
+
+        $data = [
+            'animal'  => $animal,
+            'types'   => $types,
+            'breeds' => $breeds
+        ];
+
+        return view('animal.edit', $data) ->with('data', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Animal $animal)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required|max:128',
+            'animal_type_id'=>'required|integer',
+            'animal_breed_id'=>'required|integer',
+            'birth_date'=>'required|date|date_format:Y-m-d',
+        ]);
+
+        $animal = Animal::find($id);
+        $animal->name = $request->get('name');
+        $animal->animal_type_id = $request->get('animal_type_id');
+        $animal->animal_breed_id = $request->get('animal_breed_id');
+        $animal->birth_date = date($request->get('birth_date'));
+        $animal->updated_at = new DateTime;
+        $animal->save();
+
+        return redirect('animal')->with('success', 'Animal has been updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Animal $animal)
+    public function destroy($id)
     {
-        //
-    }
+        $animal = Animal::find($id);
+        $animal->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Animal  $animal
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Animal $animal)
-    {
-        //
+        return redirect('animal')->with('success', 'Animal has been deleted successfully');
     }
 }

@@ -37,10 +37,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (Auth::check())
-                            <li><a href="{{ url('admin/subjects') }}"><i class="fa fa-list"></i> <span>Subjects</span></a></li>
-                            <li><a href="{{ url('admin/tutors') }}"><i class="fa fa-list"></i> <span>Tutors</span></a></li>
-                            <li><a href="{{ url('admin/images') }}"><i class="fa fa-list"></i> <span>Images</span></a></li>
-                            <li><a href="{{ url('admin/samples') }}"><i class="fa fa-list"></i> <span>Samples</span></a></li>
+                            <li><a href="{{ url('animal') }}"><i class="fa fa-list"></i> <span>Animals</span></a></li>
+                            <li><a href="{{ url('animalType') }}"><i class="fa fa-list"></i> <span>Types</span></a></li>
+                            <li><a href="{{ url('animalBreed') }}"><i class="fa fa-list"></i> <span>Breeds</span></a></li>
                         @endif
                         &nbsp;
                     </ul>
