@@ -17,33 +17,17 @@
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        @if (Auth::check())
-                            <li><a href="{{ url('animal') }}"><i class="fa fa-list"></i> <span>Animals</span></a></li>
-                            <li><a href="{{ url('animalType') }}"><i class="fa fa-list"></i> <span>Types</span></a></li>
-                            <li><a href="{{ url('animalBreed') }}"><i class="fa fa-list"></i> <span>Breeds</span></a></li>
-                        @endif
-                        &nbsp;
-                    </ul>
-
+                <!-- Left Side Of Navbar -->
+                <ul class="nav">
+                    @if (Auth::check())
+                        <li><a class="btn btn-default"href="{{ url('animal') }}"><i class="fa fa-list"></i> <span>Animals</span></a></li>
+                        <li><a class="btn btn-default"href="{{ url('animalType') }}"><i class="fa fa-list"></i> <span>Types</span></a></li>
+                        <li><a class="btn btn-default"href="{{ url('animalBreed') }}"><i class="fa fa-list"></i> <span>Breeds</span></a></li>
+                    @endif
+                    &nbsp;
+                </ul>
+                <div class="row">
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

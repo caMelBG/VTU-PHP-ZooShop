@@ -16,6 +16,7 @@
                             <div class="alert alert-info">{{\Session::get('success') }}</div>
                         @endif
 
+                        <h2>Animal breeds</h2>
                         <table class="table table-striped">
                             <thead>
                             <tr class="row">

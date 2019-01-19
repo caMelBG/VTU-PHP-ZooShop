@@ -42,3 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' 
     Route::resource('samples', 'SamplesController');
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

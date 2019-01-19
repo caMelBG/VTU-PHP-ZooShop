@@ -13,8 +13,16 @@ class AnimalController extends Controller
     public function index()
     {
         $animals = Animal::all();
+        $types = AnimalType::all();
+        $breeds = AnimalBreed::all();
 
-        return view('animal.index', $animals) ->with('animalBreeds', $animals);
+        $data = [
+            'animals'  => $animals,
+            'types'   => $types,
+            'breeds' => $breeds
+        ];
+
+        return view('animal.index', $data) ->with('data', $data);
     }
 
     public function create()

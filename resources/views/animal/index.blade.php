@@ -16,20 +16,25 @@
                             <div class="alert alert-info">{{\Session::get('success') }}</div>
                         @endif
 
+                        <h2>Animals</h2>
                         <table class="table table-striped">
                             <thead>
                             <tr class="row">
-                                <td class="col-md-3">ID</td>
-                                <td class="col-md-5">Name</td>
-                                <td class="col-md-4">Action</td>
+                                <td class="col-md-1">ID</td>
+                                <td class="col-md-2">Name</td>
+                                <td class="col-md-3">Type</td>
+                                <td class="col-md-3">Breed</td>
+                                <td class="col-md-3">Action</td>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($animalBreeds as $key => $value)
+                            @foreach($animals as $key => $value)
                                 <tr class="row">
-                                    <td class="col-md-3">{{ $value->id }}</td>
-                                    <td class="col-md-5">{{ $value->name }}</td>
-                                    <td class="col-md-4">
+                                    <td class="col-md-1">{{ $value->id }}</td>
+                                    <td class="col-md-2">{{ $value->name }}</td>
+                                    <td class="col-md-3">{{ $types->where('id', $value->animal_type_id)->first()->name }}</td>
+                                    <td class="col-md-3">{{ $breeds->where('id', $value->animal_breed_id)->first()->name }}</td>
+                                    <td class="col-md-3">
                                         <a href="{{ route('animal.edit', ['id' =>$value->id])}}" class="btn btn-primary">Edit</a>
                                         <form action="{{ route('animal.destroy', $value->id)}}" method="post" class="custom-control-inline">
                                             @csrf
