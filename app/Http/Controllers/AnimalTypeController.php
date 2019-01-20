@@ -67,12 +67,13 @@ class AnimalTypeController extends Controller
      * @param  \App\AnimalType  $animalType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
+            'id'=>'required|integer',
             'name'=>'required|max:128'
         ]);
-
+        $id = $request->get('id');
         $animalType = AnimalType::find($id);
         $animalType->name = $request->get('name');
         $animalType->save();

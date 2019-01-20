@@ -17,6 +17,14 @@
                         <form method="post" action="{{url('animal/update')}}" enctype="multipart/form-data">
                             <div class="form-group row">
                                 {{csrf_field()}}
+                                <input type="hidden" value="{{ $animal->id }}" name="id" />
+                                <div class="col-sm-12">
+                                    @if($animal->image_id != null)
+                                        <img src="<?php echo asset('storage/sample-images/' . $avatar->fileName);?>"/>
+                                    @endif
+                                    <br/>
+                                    <input type="file" class="" id="customImage" placeholder="customImage" name="customImage">
+                                </div>
                                 <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Animal Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" value="{{ $animal->name }}" placeholder="Name" name="name">

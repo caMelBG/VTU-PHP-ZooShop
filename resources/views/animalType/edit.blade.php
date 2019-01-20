@@ -17,6 +17,7 @@
                         <form method="post" action="{{url('animalType/update')}}" enctype="multipart/form-data">
                             <div class="form-group row">
                                 {{csrf_field()}}
+                                <input type="hidden" value="{{ $animalType->id }}" name="id" />
                                 <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Animal Type Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" value="{{ $animalType->name }}" placeholder="Name" name="name">

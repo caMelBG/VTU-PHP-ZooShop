@@ -25,6 +25,7 @@
                         <li><a class="btn btn-default"href="{{ url('animalType') }}"><i class="fa fa-list"></i> <span>Types</span></a></li>
                         <li><a class="btn btn-default"href="{{ url('animalBreed') }}"><i class="fa fa-list"></i> <span>Breeds</span></a></li>
                         <li><a class="btn btn-default"href="{{ url('users') }}"><i class="fa fa-list"></i> <span>Users</span></a></li>
+                        <li><a class="btn btn-default"href="{{ url('admin/images') }}"><i class="fa fa-list"></i> <span>Images</span></a></li>
                     @endif
                     &nbsp;
                 </ul>

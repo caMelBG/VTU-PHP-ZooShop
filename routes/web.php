@@ -21,18 +21,22 @@ Route::get('/users/edit', 'UsersController@edit');
 Route::resource('animalType', 'AnimalTypeController');
 Route::get('/animalType', 'AnimalTypeController@index');
 Route::post('/animalType/store', 'AnimalTypeController@store');
-Route::post('/animalType/update', 'AnimalTypeController@store');
+Route::post('/animalType/update', 'AnimalTypeController@update');
 
 Route::resource('animalBreed', 'AnimalBreedController');
 Route::get('/animalBreed', 'AnimalBreedController@index');
 Route::post('/animalBreed/store', 'AnimalBreedController@store');
-Route::post('/animalBreed/update', 'AnimalBreedController@store');
+Route::post('/animalBreed/update', 'AnimalBreedController@update');
 
 Route::resource('animal', 'AnimalController');
 Route::get('/animal', 'AnimalController@index');
 Route::post('/animal/store', 'AnimalController@store');
-Route::post('/animal/update', 'AnimalController@store');
+Route::post('/animal/update', 'AnimalController@update');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
+    Route::resource('images', 'ImagesController');
+});
