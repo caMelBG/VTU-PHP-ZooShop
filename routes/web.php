@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('users', 'UsersController');
+Route::get('/users/edit', 'UsersController@edit');
+
 Route::resource('animalType', 'AnimalTypeController');
 Route::get('/animalType', 'AnimalTypeController@index');
 Route::post('/animalType/store', 'AnimalTypeController@store');
@@ -30,18 +33,6 @@ Route::get('/animal', 'AnimalController@index');
 Route::post('/animal/store', 'AnimalController@store');
 Route::post('/animal/update', 'AnimalController@store');
 
-//
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
-
-    Route::resource('subjects', 'SubjectsController');
-    Route::resource('tutors', 'TutorsController');
-    Route::resource('images', 'ImagesController');
-    Route::resource('samples', 'SamplesController');
-
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

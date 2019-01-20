@@ -35,6 +35,12 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
 
+    public function isUserIsAdmin($id)
+    {
+        $user = User::find($id);
+        return null !== $user->roles()->where('name', 'admin')->first();
+    }
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
