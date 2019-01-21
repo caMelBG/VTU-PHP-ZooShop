@@ -14,8 +14,8 @@
 
 * PHP - programming language
 * MySql - data base 
-* Laravel - Mvc framework
-* Equivalent - ORM
+* Laravel - MVC framework
+* Equivalent - ORM framework
 * Composer - packege  manager
 * Twitter Bootstrap - HTML and CSS library
 * HTML and CSS
@@ -34,7 +34,7 @@
     
         DB_HOST=
         DB_DATABASE=
-        DB_USERNAME=root
+        DB_USERNAME=
         DB_PASSWORD=
     
     
