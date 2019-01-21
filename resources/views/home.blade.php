@@ -14,7 +14,20 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach($animals as $key => $value)
+                        <div class="row">
+                            <img src="{{$images->where('id', $value->image_id)->first()}}" />
+                            <div class="col-md-3">
+                                {{$value->name}}
+                            </div>
+                            <div class="col-md-3">
+                                {{$types->where('id', $value->animal_type_id)->first()->name}}
+                            </div>
+                            <div class="col-md-3">
+                                {{$breeds->where('id', $value->breed_type_id)->first()->name}}
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

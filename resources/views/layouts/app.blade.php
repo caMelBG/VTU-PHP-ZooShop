@@ -20,7 +20,7 @@
 
                 <!-- Left Side Of Navbar -->
                 <ul class="nav">
-                    @if (Auth::check())
+                    @if ( Auth::user()->hasRole('admin') == true)
                         <li><a class="btn btn-default"href="{{ url('animal') }}"><i class="fa fa-list"></i> <span>Animals</span></a></li>
                         <li><a class="btn btn-default"href="{{ url('animalType') }}"><i class="fa fa-list"></i> <span>Types</span></a></li>
                         <li><a class="btn btn-default"href="{{ url('animalBreed') }}"><i class="fa fa-list"></i> <span>Breeds</span></a></li>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Animal;
+use App\AnimalType;
+use App\AnimalBreed;
+use App\Images;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,8 +27,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['admin']);
+        //$request->user()->authorizeRoles(['admin']);
 
-        return view('home');
+        $animals = Animal::orderBy('birth_date', 'desc')->take(10)->get();
+        $images = Images::all()->toArray();
+        $types = AnimalType::all()->toArray();
+        $breeds = AnimalBreed::all()->toArray();
+
+        $data = [
+            'animals' => $animals,
+            'images' => $images,
+            'types' => $types,
+            'breeds' => $breeds,
+        ];
+
+        return view('home', $data) ->with('data', $data);
     }
 }
