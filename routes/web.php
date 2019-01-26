@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('home', 'HomeController');
+Route::get('/', 'HomeController@index');
 
 Route::resource('users', 'UsersController');
 Route::get('/users/edit', 'UsersController@edit');
@@ -34,8 +33,6 @@ Route::post('/animal/store', 'AnimalController@store');
 Route::post('/animal/update', 'AnimalController@update');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' => 'Admin'], function () {
     Route::resource('images', 'ImagesController');

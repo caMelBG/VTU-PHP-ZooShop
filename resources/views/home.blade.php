@@ -1,11 +1,18 @@
 @extends('layouts.app')
 
+<style>
+    #home-page img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
 @section('content')
-<div class="container">
+<div class="container" id="home-page">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading"></div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -16,15 +23,19 @@
 
                     @foreach($animals as $key => $value)
                         <div class="row">
-                            <img src="{{$images->where('id', $value->image_id)->first()}}" />
+                            @if($value->image != null)
+                                <img src="<?php echo asset('storage/sample-images/' . $value->image->fileName);?>"/>
+                            @else
+                                <img src="<?php echo asset('storage/sample-images/default.jpeg');?>"/>
+                            @endif
                             <div class="col-md-3">
                                 {{$value->name}}
                             </div>
                             <div class="col-md-3">
-                                {{$types->where('id', $value->animal_type_id)->first()->name}}
+                                {{$value->type->name}}
                             </div>
                             <div class="col-md-3">
-                                {{$breeds->where('id', $value->breed_type_id)->first()->name}}
+                                {{$value->breed->name}}
                             </div>
                         </div>
                     @endforeach

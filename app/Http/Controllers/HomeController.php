@@ -11,16 +11,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -29,16 +19,10 @@ class HomeController extends Controller
     {
         //$request->user()->authorizeRoles(['admin']);
 
-        $animals = Animal::orderBy('birth_date', 'desc')->take(10)->get();
-        $images = Images::all()->toArray();
-        $types = AnimalType::all()->toArray();
-        $breeds = AnimalBreed::all()->toArray();
+        $animals = Animal::with('type')->with('breed')->orderBy('birth_date', 'desc')->take(10)->get();
 
         $data = [
             'animals' => $animals,
-            'images' => $images,
-            'types' => $types,
-            'breeds' => $breeds,
         ];
 
         return view('home', $data) ->with('data', $data);

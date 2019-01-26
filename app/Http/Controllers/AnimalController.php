@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 
 class AnimalController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $animals = Animal::all();
