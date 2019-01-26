@@ -114,6 +114,7 @@ class AnimalController extends Controller
 
         $image_id = null;
         $file = $request->file('customImage');
+        $animal = Animal::find($request->get('id'));
         if (!is_null($file)) {
             $path = $file->store('public/sample-images');
             $image = new Images([
@@ -122,14 +123,13 @@ class AnimalController extends Controller
             ]);
             $image->save();
             $image_id = DB::getPdo()->lastInsertId();
+            $animal->image_id = $image_id;
         }
 
 
-        $animal = Animal::find($request->get('id'));
         $animal->name = $request->get('name');
         $animal->animal_type_id = $request->get('animal_type_id');
         $animal->animal_breed_id = $request->get('animal_breed_id');
-        $animal->image_id = $image_id != null ? $image_id : null;
         $animal->birth_date = date($request->get('birth_date'));
         $animal->updated_at = new DateTime;
         $animal->save();

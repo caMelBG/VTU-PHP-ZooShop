@@ -14,9 +14,12 @@
 
                         @include('admin.partials.error')
 
-                        <form method="post" action="{{url('animal/update')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{url('animal/store')}}" enctype="multipart/form-data">
                             <div class="form-group row">
                                 {{csrf_field()}}
+                                <div class="col-sm-12">
+                                    <input type="file" class="" id="customImage" placeholder="customImage" name="customImage">
+                                </div>
                                 <label for="lgFormGroupInput" class="col-sm-4 col-form-label col-form-label-lg">Animal Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="Name" name="name">

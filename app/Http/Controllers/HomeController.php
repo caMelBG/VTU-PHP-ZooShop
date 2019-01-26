@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         //$request->user()->authorizeRoles(['admin']);
 
-        $animals = Animal::with('type')->with('breed')->orderBy('birth_date', 'desc')->take(10)->get();
+        $animals = Animal::with('type')->with('breed')->orderBy('birth_date', 'desc')->take(190)->get();
 
         $data = [
             'animals' => $animals,
