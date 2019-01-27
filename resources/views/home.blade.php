@@ -19,6 +19,13 @@
     <![endif]-->
 </head>
 <body>
+
+<style>
+   input, option {
+       font-size: 20;
+   }
+</style>
+
 <!-- Navigation bar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -108,7 +115,46 @@
         </a>
     </div>
 </div><!-- End Slide gallery -->
-<h3 class="text-center">Wild Nature Charity & Urgent Program</h3>
+<h3 class="text-center">
+    <form class="row" method="get" action="{{url('home/index')}}" >
+
+        <div class="form-group col-md-2 col-md-offset-2">
+            <input type="text" name="query" placeholder="Име" value="{{$query}}" class="form-control"/>
+        </div>
+
+        <div class="form-group col-md-2">
+            <select class="form-control" name="animal_type_id">
+                @if($animal_type_id == null)
+                    <option value="" selected> Вид </option>
+                @endif
+                @foreach($types as $key => $value)
+                    @if($value->id == $animal_type_id)
+                        <option selected value="{{$value->id}}">{{$value->name}}</option>
+                    @else
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-md-2">
+            <select class="form-control" name="animal_breed_id">
+                <option value="" selected> Порода </option>
+                @foreach($breeds as $key => $value)
+                    @if($value->id == $animal_breed_id)
+                        <option selected value="{{$value->id}}">{{$value->name}}</option>
+                    @else
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-md-1">
+            <input class="form-control" type="submit" value="Търсене"/>
+        </div>
+    </form>
+</h3>
 <!-- Thumbnails -->
 <div class="container thumbs">
 

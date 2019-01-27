@@ -11,8 +11,13 @@
 |
 */
 
-Route::resource('home', 'HomeController');
+Route::resource('Home', 'HomeController');
 Route::get('/', 'HomeController@index');
+Route::get('/home/', 'HomeController@index');
+Route::get('/home/index', 'HomeController@index');
+Route::get('/home/index/{query}', function ($query) {
+    return "home".$query;
+ } );
 
 Route::resource('users', 'UsersController');
 Route::get('/users/edit', 'UsersController@edit');
