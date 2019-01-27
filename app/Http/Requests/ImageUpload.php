@@ -24,7 +24,6 @@ class ImageUpload extends FormRequest
     public function rules()
     {
         return [
-            'imageDescription' => 'required',
             'customImage' => 'image|mimes:jpeg,bmp,png'
         ];
     }

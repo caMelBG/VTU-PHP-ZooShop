@@ -8,7 +8,7 @@ use App\Images;
 use App\Animal;
 use App\AnimalType;
 use App\AnimalBreed;
-use Illuminate\Http\Request;
+use App\Http\Requests\ImageUpload;
 
 class AnimalController extends Controller
 {
@@ -52,7 +52,7 @@ class AnimalController extends Controller
         return view('animal.create', $data) ->with('data', $data);
     }
 
-    public function store(Request $request)
+    public function store(ImageUpload $request)
     {
         $request->validate([
             'name'=>'required|max:128',
@@ -102,7 +102,7 @@ class AnimalController extends Controller
         return view('animal.edit', $data) ->with('data', $data);
     }
 
-    public function update(Request $request)
+    public function update(ImageUpload $request)
     {
         $request->validate([
             'id' => 'required|integer',
